@@ -1,7 +1,7 @@
 
 import { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
-import { Menu, X, Phone, ChevronDown, Facebook, Instagram, Twitter } from 'lucide-react';
+import { Menu, X, Phone, Facebook, Instagram, Twitter, Dumbbell } from 'lucide-react';
 import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 
@@ -25,11 +25,11 @@ const Navbar = () => {
 
   const navLinks = [
     { name: 'Home', path: '/' },
-    { name: 'Menu', path: '/menu' },
+    { name: 'Equipment', path: '/equipment' },
     { name: 'About Us', path: '/about' },
     { name: 'Gallery', path: '/gallery' },
-    { name: 'Reservations', path: '/reservations' },
-    { name: 'Online Order', path: '/order' },
+    { name: 'Membership', path: '/membership' },
+    { name: 'Classes', path: '/classes' },
     { name: 'Contact', path: '/contact' },
   ];
 
@@ -38,7 +38,7 @@ const Navbar = () => {
       className={cn(
         'fixed top-0 left-0 right-0 z-50 transition-all duration-300',
         isScrolled 
-          ? 'bg-charcoal-900/90 backdrop-blur-md py-2 shadow-md' 
+          ? 'bg-zinc-900/90 backdrop-blur-md py-2 shadow-md' 
           : 'bg-transparent py-4'
       )}
     >
@@ -48,11 +48,14 @@ const Navbar = () => {
           to="/"
           className="relative z-50 flex items-center"
         >
-          <div className="flex flex-col">
-            <span className="text-2xl md:text-3xl font-serif font-bold text-cream-100 transition-colors">
-              FOOD <span className="text-gold-400">FEAST</span>
-            </span>
-            <span className="text-xs uppercase tracking-widest text-cream-300 opacity-80">Premium Dining Experience</span>
+          <div className="flex items-center">
+            <Dumbbell size={32} className="text-orange-500 mr-2" />
+            <div className="flex flex-col">
+              <span className="text-2xl md:text-3xl font-bold text-white transition-colors">
+                ELITE <span className="text-orange-500">FITNESS</span>
+              </span>
+              <span className="text-xs uppercase tracking-widest text-gray-400 opacity-80">Premium Gym Experience</span>
+            </div>
           </div>
         </Link>
 
@@ -63,8 +66,8 @@ const Navbar = () => {
               key={link.name}
               to={link.path}
               className={cn(
-                'nav-link text-sm text-cream-100',
-                location.pathname === link.path && 'text-gold-400 after:w-full'
+                'nav-link text-sm text-white',
+                location.pathname === link.path && 'text-orange-500 after:w-full'
               )}
             >
               {link.name}
@@ -79,7 +82,7 @@ const Navbar = () => {
               href="https://facebook.com" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="text-cream-200 hover:text-gold-400 transition-colors"
+              className="text-gray-300 hover:text-orange-500 transition-colors"
               aria-label="Facebook"
             >
               <Facebook size={18} />
@@ -88,7 +91,7 @@ const Navbar = () => {
               href="https://instagram.com" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="text-cream-200 hover:text-gold-400 transition-colors"
+              className="text-gray-300 hover:text-orange-500 transition-colors"
               aria-label="Instagram"
             >
               <Instagram size={18} />
@@ -97,7 +100,7 @@ const Navbar = () => {
               href="https://twitter.com" 
               target="_blank" 
               rel="noopener noreferrer"
-              className="text-cream-200 hover:text-gold-400 transition-colors"
+              className="text-gray-300 hover:text-orange-500 transition-colors"
               aria-label="Twitter"
             >
               <Twitter size={18} />
@@ -108,7 +111,7 @@ const Navbar = () => {
             <Button 
               variant="outline" 
               size="sm"
-              className="bg-burgundy-500 text-cream-100 border-burgundy-400 hover:bg-burgundy-400 hover:text-cream-50 flex items-center gap-2"
+              className="bg-purple-600 text-white border-purple-500 hover:bg-purple-500 hover:text-white flex items-center gap-2"
             >
               <Phone size={14} />
               <span>Call Now</span>
@@ -119,7 +122,7 @@ const Navbar = () => {
         {/* Mobile Menu Button */}
         <button
           onClick={() => setIsOpen(!isOpen)}
-          className="relative z-50 lg:hidden text-cream-100 hover:text-gold-400 transition-colors"
+          className="relative z-50 lg:hidden text-white hover:text-orange-500 transition-colors"
           aria-label={isOpen ? 'Close Menu' : 'Open Menu'}
         >
           {isOpen ? <X size={24} /> : <Menu size={24} />}
@@ -128,7 +131,7 @@ const Navbar = () => {
         {/* Mobile Menu */}
         <div 
           className={cn(
-            'fixed inset-0 flex flex-col bg-charcoal-900/98 backdrop-blur-md z-40 transition-all duration-300 ease-in-out lg:hidden',
+            'fixed inset-0 flex flex-col bg-zinc-900/98 backdrop-blur-md z-40 transition-all duration-300 ease-in-out lg:hidden',
             isOpen ? 'opacity-100 pointer-events-auto' : 'opacity-0 pointer-events-none'
           )}
         >
@@ -140,8 +143,8 @@ const Navbar = () => {
                   key={link.name}
                   to={link.path}
                   className={cn(
-                    'text-lg font-medium text-cream-100 hover:text-gold-400 transition-colors',
-                    location.pathname === link.path && 'text-gold-400'
+                    'text-lg font-medium text-white hover:text-orange-500 transition-colors',
+                    location.pathname === link.path && 'text-orange-500'
                   )}
                 >
                   {link.name}
@@ -149,13 +152,13 @@ const Navbar = () => {
               ))}
             </nav>
 
-            <div className="pt-6 border-t border-cream-100/10">
+            <div className="pt-6 border-t border-white/10">
               <div className="flex items-center justify-center space-x-6 mb-6">
                 <a 
                   href="https://facebook.com" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="text-cream-200 hover:text-gold-400 transition-colors"
+                  className="text-gray-300 hover:text-orange-500 transition-colors"
                   aria-label="Facebook"
                 >
                   <Facebook size={24} />
@@ -164,7 +167,7 @@ const Navbar = () => {
                   href="https://instagram.com" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="text-cream-200 hover:text-gold-400 transition-colors"
+                  className="text-gray-300 hover:text-orange-500 transition-colors"
                   aria-label="Instagram"
                 >
                   <Instagram size={24} />
@@ -173,7 +176,7 @@ const Navbar = () => {
                   href="https://twitter.com" 
                   target="_blank" 
                   rel="noopener noreferrer"
-                  className="text-cream-200 hover:text-gold-400 transition-colors"
+                  className="text-gray-300 hover:text-orange-500 transition-colors"
                   aria-label="Twitter"
                 >
                   <Twitter size={24} />
@@ -184,7 +187,7 @@ const Navbar = () => {
                 <Button 
                   variant="outline" 
                   size="lg"
-                  className="w-full bg-burgundy-500 text-cream-100 border-burgundy-400 hover:bg-burgundy-400 hover:text-cream-50 flex items-center justify-center gap-2"
+                  className="w-full bg-purple-600 text-white border-purple-500 hover:bg-purple-500 hover:text-white flex items-center justify-center gap-2"
                 >
                   <Phone size={16} />
                   <span>Call Now: (555) 123-4567</span>

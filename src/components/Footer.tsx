@@ -1,153 +1,132 @@
 
 import { Link } from 'react-router-dom';
 import { 
+  Facebook, 
+  Instagram, 
+  Twitter, 
+  Linkedin, 
+  Youtube, 
   MapPin, 
   Phone, 
   Mail, 
-  Clock, 
-  Facebook, 
-  Instagram, 
-  Twitter,
-  ChevronRight 
+  Clock,
+  Dumbbell
 } from 'lucide-react';
 
 const Footer = () => {
   const currentYear = new Date().getFullYear();
   
   return (
-    <footer className="bg-charcoal-900 text-cream-100">
-      <div className="container mx-auto px-4 py-16">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10">
-          {/* About */}
+    <footer className="bg-zinc-900 text-gray-400">
+      <div className="container mx-auto px-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 py-16">
+          {/* About Column */}
           <div>
-            <Link to="/" className="inline-block mb-6">
-              <div className="flex flex-col">
-                <span className="text-2xl font-serif font-bold text-cream-100">
-                  FOOD <span className="text-gold-400">FEAST</span>
-                </span>
-                <span className="text-xs uppercase tracking-widest text-cream-300 opacity-80">Premium Dining Experience</span>
-              </div>
-            </Link>
-            
-            <p className="text-cream-300 mb-6">
-              Experience the pinnacle of non-vegetarian cuisine in an elegant ambiance with exceptional service.
+            <div className="flex items-center mb-6">
+              <Dumbbell size={28} className="text-orange-500 mr-2" />
+              <span className="text-2xl font-bold text-white">ELITE <span className="text-orange-500">FITNESS</span></span>
+            </div>
+            <p className="mb-6">
+              Elite Fitness is a premium gym providing state-of-the-art equipment, expert trainers, and a supportive community to help you achieve your fitness goals.
             </p>
-            
             <div className="flex space-x-4">
-              <a 
-                href="https://facebook.com" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="text-cream-400 hover:text-gold-400 transition-colors"
-                aria-label="Facebook"
-              >
+              <a href="https://facebook.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-orange-500 transition-colors">
                 <Facebook size={20} />
               </a>
-              <a 
-                href="https://instagram.com" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="text-cream-400 hover:text-gold-400 transition-colors"
-                aria-label="Instagram"
-              >
+              <a href="https://instagram.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-orange-500 transition-colors">
                 <Instagram size={20} />
               </a>
-              <a 
-                href="https://twitter.com" 
-                target="_blank" 
-                rel="noopener noreferrer"
-                className="text-cream-400 hover:text-gold-400 transition-colors"
-                aria-label="Twitter"
-              >
+              <a href="https://twitter.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-orange-500 transition-colors">
                 <Twitter size={20} />
+              </a>
+              <a href="https://linkedin.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-orange-500 transition-colors">
+                <Linkedin size={20} />
+              </a>
+              <a href="https://youtube.com" target="_blank" rel="noopener noreferrer" className="text-gray-400 hover:text-orange-500 transition-colors">
+                <Youtube size={20} />
               </a>
             </div>
           </div>
           
           {/* Quick Links */}
           <div>
-            <h3 className="text-lg font-serif font-semibold mb-6 text-cream-50">Quick Links</h3>
+            <h4 className="text-lg font-bold text-white mb-6">Quick Links</h4>
             <ul className="space-y-3">
-              {['Home', 'Menu', 'About Us', 'Gallery', 'Reservations', 'Online Order', 'Contact'].map((item) => (
-                <li key={item}>
-                  <Link 
-                    to={`/${item === 'Home' ? '' : item.toLowerCase().replace(/\s+/g, '-')}`}
-                    className="text-cream-300 hover:text-gold-400 transition-colors flex items-center"
-                  >
-                    <ChevronRight size={16} className="mr-2 text-gold-400" />
-                    {item}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
-          
-          {/* Contact Info */}
-          <div>
-            <h3 className="text-lg font-serif font-semibold mb-6 text-cream-50">Contact Us</h3>
-            <ul className="space-y-4">
-              <li className="flex items-start">
-                <MapPin size={18} className="mr-3 text-gold-400 flex-shrink-0 mt-1" />
-                <p className="text-cream-300">
-                  123 Gourmet Avenue<br />
-                  New York, NY 10001<br />
-                  United States
-                </p>
+              <li>
+                <Link to="/" className="hover:text-orange-500 transition-colors">Home</Link>
               </li>
-              <li className="flex items-center">
-                <Phone size={18} className="mr-3 text-gold-400 flex-shrink-0" />
-                <a href="tel:+15551234567" className="text-cream-300 hover:text-gold-400 transition-colors">
-                  (555) 123-4567
-                </a>
+              <li>
+                <Link to="/about" className="hover:text-orange-500 transition-colors">About Us</Link>
               </li>
-              <li className="flex items-center">
-                <Mail size={18} className="mr-3 text-gold-400 flex-shrink-0" />
-                <a href="mailto:info@foodfeast.com" className="text-cream-300 hover:text-gold-400 transition-colors">
-                  info@foodfeast.com
-                </a>
+              <li>
+                <Link to="/equipment" className="hover:text-orange-500 transition-colors">Equipment</Link>
+              </li>
+              <li>
+                <Link to="/classes" className="hover:text-orange-500 transition-colors">Classes</Link>
+              </li>
+              <li>
+                <Link to="/membership" className="hover:text-orange-500 transition-colors">Membership</Link>
+              </li>
+              <li>
+                <Link to="/gallery" className="hover:text-orange-500 transition-colors">Gallery</Link>
+              </li>
+              <li>
+                <Link to="/contact" className="hover:text-orange-500 transition-colors">Contact</Link>
               </li>
             </ul>
           </div>
           
           {/* Opening Hours */}
           <div>
-            <h3 className="text-lg font-serif font-semibold mb-6 text-cream-50">Opening Hours</h3>
+            <h4 className="text-lg font-bold text-white mb-6">Opening Hours</h4>
             <ul className="space-y-3">
               <li className="flex items-start">
-                <Clock size={18} className="mr-3 text-gold-400 flex-shrink-0 mt-1" />
+                <Clock className="h-5 w-5 mr-2 mt-0.5 text-orange-500" />
                 <div>
-                  <p className="text-cream-300">Monday - Friday</p>
-                  <p className="text-cream-100">12:00 PM - 10:00 PM</p>
+                  <span className="block font-medium text-white">Monday - Friday</span>
+                  <span>5:00 AM - 10:00 PM</span>
                 </div>
               </li>
               <li className="flex items-start">
-                <Clock size={18} className="mr-3 text-gold-400 flex-shrink-0 mt-1" />
+                <Clock className="h-5 w-5 mr-2 mt-0.5 text-orange-500" />
                 <div>
-                  <p className="text-cream-300">Saturday - Sunday</p>
-                  <p className="text-cream-100">12:00 PM - 11:00 PM</p>
+                  <span className="block font-medium text-white">Saturday</span>
+                  <span>6:00 AM - 8:00 PM</span>
+                </div>
+              </li>
+              <li className="flex items-start">
+                <Clock className="h-5 w-5 mr-2 mt-0.5 text-orange-500" />
+                <div>
+                  <span className="block font-medium text-white">Sunday</span>
+                  <span>8:00 AM - 6:00 PM</span>
                 </div>
               </li>
             </ul>
-            
-            <div className="mt-6 p-4 rounded-lg bg-burgundy-500/20 border border-burgundy-500/30">
-              <p className="text-cream-100 text-sm">
-                <span className="font-semibold">Holiday Hours:</span> May vary during holidays and special occasions. Please call to confirm.
-              </p>
-            </div>
+          </div>
+          
+          {/* Contact Info */}
+          <div>
+            <h4 className="text-lg font-bold text-white mb-6">Contact Info</h4>
+            <ul className="space-y-3">
+              <li className="flex items-start">
+                <MapPin className="h-5 w-5 mr-2 mt-0.5 text-orange-500" />
+                <span>123 Fitness Street, Cityville, State 12345</span>
+              </li>
+              <li className="flex items-start">
+                <Phone className="h-5 w-5 mr-2 mt-0.5 text-orange-500" />
+                <span>(555) 123-4567</span>
+              </li>
+              <li className="flex items-start">
+                <Mail className="h-5 w-5 mr-2 mt-0.5 text-orange-500" />
+                <span>info@elitefitness.com</span>
+              </li>
+            </ul>
           </div>
         </div>
         
-        <div className="mt-12 pt-8 border-t border-cream-900">
-          <div className="flex flex-col md:flex-row justify-between items-center">
-            <p className="text-cream-400 text-sm mb-4 md:mb-0">
-              &copy; {currentYear} FOOD FEAST. All rights reserved.
-            </p>
-            <div className="flex space-x-6">
-              <a href="#" className="text-cream-400 hover:text-gold-400 text-sm transition-colors">Privacy Policy</a>
-              <a href="#" className="text-cream-400 hover:text-gold-400 text-sm transition-colors">Terms of Service</a>
-              <a href="#" className="text-cream-400 hover:text-gold-400 text-sm transition-colors">Sitemap</a>
-            </div>
-          </div>
+        {/* Bottom Bar */}
+        <div className="border-t border-zinc-800 py-8 text-center">
+          <p>© {currentYear} Elite Fitness. All rights reserved.</p>
         </div>
       </div>
     </footer>

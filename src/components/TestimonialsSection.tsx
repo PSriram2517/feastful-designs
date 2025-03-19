@@ -1,145 +1,186 @@
 
-import { useRef, useState } from 'react';
-import { motion, useInView } from 'framer-motion';
-import { ChevronLeft, ChevronRight, Quote } from 'lucide-react';
+import { useState } from 'react';
+import { motion } from 'framer-motion';
+import { Star, MessageCircle, ChevronLeft, ChevronRight } from 'lucide-react';
+import { Button } from '@/components/ui/button';
 
 const testimonials = [
   {
     id: 1,
-    text: "The Grilled Lamb Chops were absolutely divine! The meat was so tender it practically melted in my mouth. FOOD FEAST has truly mastered the art of non-vegetarian cuisine.",
-    name: "Emily Rodriguez",
-    title: "Food Critic",
-    image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1887&auto=format&fit=crop"
+    name: 'Sarah Johnson',
+    role: 'Member since 2021',
+    avatar: 'https://images.unsplash.com/photo-1494790108377-be9c29b29330?q=80&w=1887&auto=format&fit=crop',
+    quote: 'Joining Elite Fitness has completely transformed my life. I've lost 30 pounds and gained so much confidence. The trainers are supportive and the facilities are top-notch!',
+    rating: 5,
+    beforeImage: 'https://images.unsplash.com/photo-1517836357463-d25dfeac3438?q=80&w=2070&auto=format&fit=crop',
+    afterImage: 'https://images.unsplash.com/photo-1609899464726-527cd0356f01?q=80&w=1974&auto=format&fit=crop'
   },
   {
     id: 2,
-    text: "I've dined at restaurants all over the world, and FOOD FEAST stands among the best. Their attention to detail, from the meat selection to the perfect cooking technique, is unparalleled.",
-    name: "Michael Chen",
-    title: "Executive Chef",
-    image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?q=80&w=1887&auto=format&fit=crop"
+    name: 'Michael Rodriguez',
+    role: 'Member since 2022',
+    avatar: 'https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1887&auto=format&fit=crop',
+    quote: 'The atmosphere at Elite Fitness is unlike any gym I've been to. Everyone is focused, the equipment is always clean and available, and the 24/7 access fits perfectly with my busy schedule.',
+    rating: 5,
+    beforeImage: 'https://images.unsplash.com/photo-1526506118085-60ce8714f8c5?q=80&w=1974&auto=format&fit=crop',
+    afterImage: 'https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?q=80&w=2070&auto=format&fit=crop'
   },
   {
     id: 3,
-    text: "The seafood platter was fresh and perfectly prepared. Each visit to FOOD FEAST is a new culinary adventure that keeps us coming back. Worth every penny!",
-    name: "Sophia Williams",
-    title: "Regular Customer",
-    image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=1740&auto=format&fit=crop"
+    name: 'Jennifer Lee',
+    role: 'Member since 2020',
+    avatar: 'https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?q=80&w=1964&auto=format&fit=crop',
+    quote: 'As someone who was intimidated by gyms, Elite Fitness made me feel welcome from day one. The trainers create personalized programs that have helped me build strength I never thought possible.',
+    rating: 4,
+    beforeImage: 'https://images.unsplash.com/photo-1506825569323-8360e1b2e1b7?q=80&w=1935&auto=format&fit=crop',
+    afterImage: 'https://images.unsplash.com/photo-1579758629938-03607ccdbaba?q=80&w=2070&auto=format&fit=crop'
   }
 ];
 
 const TestimonialsSection = () => {
-  const ref = useRef(null);
-  const isInView = useInView(ref, { once: true, amount: 0.2 });
-  const [activeIndex, setActiveIndex] = useState(0);
+  const [currentIndex, setCurrentIndex] = useState(0);
+  const [showBeforeAfter, setShowBeforeAfter] = useState(false);
   
-  const nextTestimonial = () => {
-    setActiveIndex((prev) => (prev + 1) % testimonials.length);
+  const currentTestimonial = testimonials[currentIndex];
+  
+  const handlePrev = () => {
+    setCurrentIndex((prevIndex) => (prevIndex === 0 ? testimonials.length - 1 : prevIndex - 1));
+    setShowBeforeAfter(false);
   };
   
-  const prevTestimonial = () => {
-    setActiveIndex((prev) => (prev - 1 + testimonials.length) % testimonials.length);
+  const handleNext = () => {
+    setCurrentIndex((prevIndex) => (prevIndex === testimonials.length - 1 ? 0 : prevIndex + 1));
+    setShowBeforeAfter(false);
   };
   
   return (
-    <section 
-      ref={ref} 
-      className="py-24 md:py-32 bg-gradient-to-b from-burgundy-500/5 to-burgundy-500/10"
-    >
-      <div className="container mx-auto px-4 max-w-5xl">
+    <section className="py-20 bg-zinc-900 overflow-hidden">
+      <div className="container mx-auto px-4">
         <div className="text-center mb-12">
-          <motion.span 
+          <motion.div
             initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5 }}
-            className="inline-block px-3 py-1 rounded-full bg-burgundy-100 text-burgundy-800 text-xs font-medium uppercase tracking-wider mb-4"
+            viewport={{ once: true }}
+            className="inline-block mb-4"
           >
-            Guest Experiences
-          </motion.span>
-          
-          <motion.h2 
+            <div className="flex items-center justify-center space-x-2">
+              <MessageCircle className="h-6 w-6 text-orange-500" />
+              <span className="text-sm font-medium uppercase tracking-wider text-orange-500">Member Stories</span>
+            </div>
+          </motion.div>
+          <motion.h2
             initial={{ opacity: 0, y: 20 }}
-            animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, delay: 0.1 }}
-            className="section-title text-center after:left-1/2 after:-translate-x-1/2"
+            viewport={{ once: true }}
+            className="text-3xl md:text-4xl font-bold mb-4 text-white"
           >
-            What Our Guests Say
+            Success Stories
           </motion.h2>
+          <motion.p
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            viewport={{ once: true }}
+            className="max-w-2xl mx-auto text-gray-400"
+          >
+            See how Elite Fitness has transformed the lives of our members.
+          </motion.p>
         </div>
         
-        <div className="relative">
-          <div className="overflow-hidden">
-            <div 
-              className="flex transition-transform duration-500 ease-in-out" 
-              style={{ transform: `translateX(-${activeIndex * 100}%)` }}
-            >
-              {testimonials.map((testimonial) => (
-                <div key={testimonial.id} className="w-full flex-shrink-0 px-4">
-                  <motion.div 
-                    initial={{ opacity: 0, y: 20 }}
-                    animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 20 }}
-                    transition={{ duration: 0.5, delay: 0.3 }}
-                    className="bg-white/50 backdrop-blur-sm rounded-xl p-8 shadow-lg"
-                  >
-                    <div className="flex justify-center mb-6">
-                      <Quote className="text-gold-400" size={40} />
-                    </div>
-                    
-                    <blockquote className="text-lg md:text-xl text-center italic text-charcoal-800 mb-8">
-                      "{testimonial.text}"
-                    </blockquote>
-                    
-                    <div className="flex items-center justify-center">
-                      <div className="w-16 h-16 rounded-full overflow-hidden border-2 border-gold-400 mr-4">
-                        <img 
-                          src={testimonial.image} 
-                          alt={testimonial.name} 
-                          className="w-full h-full object-cover"
-                          loading="lazy"
-                        />
-                      </div>
-                      <div>
-                        <p className="font-bold text-burgundy-600">{testimonial.name}</p>
-                        <p className="text-sm text-charcoal-500">{testimonial.title}</p>
-                      </div>
-                    </div>
-                  </motion.div>
-                </div>
-              ))}
-            </div>
-          </div>
-          
+        <div className="max-w-6xl mx-auto">
           <motion.div 
             initial={{ opacity: 0 }}
-            animate={isInView ? { opacity: 1 } : { opacity: 0 }}
-            transition={{ duration: 0.5, delay: 0.6 }}
-            className="flex justify-center mt-8 gap-2"
+            whileInView={{ opacity: 1 }}
+            transition={{ duration: 0.5 }}
+            viewport={{ once: true }}
+            className="testimonial-card relative"
           >
-            <button 
-              onClick={prevTestimonial} 
-              className="w-10 h-10 rounded-full flex items-center justify-center border border-burgundy-300 text-burgundy-500 hover:bg-burgundy-500 hover:text-white transition-colors"
-              aria-label="Previous testimonial"
-            >
-              <ChevronLeft size={20} />
-            </button>
+            <div className="flex flex-col md:flex-row gap-8">
+              <div className="md:w-1/3">
+                <div className="relative">
+                  <img
+                    src={currentTestimonial.avatar}
+                    alt={currentTestimonial.name}
+                    className="w-32 h-32 object-cover rounded-full mx-auto border-2 border-purple-500"
+                  />
+                  <div className="flex justify-center mt-4">
+                    {[...Array(5)].map((_, i) => (
+                      <Star
+                        key={i}
+                        className={`h-5 w-5 ${i < currentTestimonial.rating ? 'text-orange-500 fill-orange-500' : 'text-gray-500'}`}
+                      />
+                    ))}
+                  </div>
+                  <h3 className="text-xl font-bold text-white text-center mt-3">{currentTestimonial.name}</h3>
+                  <p className="text-gray-400 text-center text-sm">{currentTestimonial.role}</p>
+                </div>
+                
+                <div className="flex justify-center mt-6">
+                  <Button
+                    variant="outline"
+                    size="sm"
+                    className="border-purple-500 text-purple-400 hover:bg-purple-500/10"
+                    onClick={() => setShowBeforeAfter(!showBeforeAfter)}
+                  >
+                    {showBeforeAfter ? 'Hide' : 'Show'} Transformation
+                  </Button>
+                </div>
+              </div>
+              
+              <div className="md:w-2/3">
+                <div className="mb-6">
+                  <blockquote className="text-xl text-gray-200 italic">
+                    "{currentTestimonial.quote}"
+                  </blockquote>
+                </div>
+                
+                {showBeforeAfter && (
+                  <div className="grid grid-cols-2 gap-4 mt-6">
+                    <div className="relative">
+                      <div className="absolute top-0 left-0 bg-purple-600 text-white text-xs font-bold px-2 py-1">
+                        BEFORE
+                      </div>
+                      <img
+                        src={currentTestimonial.beforeImage}
+                        alt="Before transformation"
+                        className="w-full h-48 object-cover rounded-md"
+                      />
+                    </div>
+                    <div className="relative">
+                      <div className="absolute top-0 left-0 bg-orange-500 text-white text-xs font-bold px-2 py-1">
+                        AFTER
+                      </div>
+                      <img
+                        src={currentTestimonial.afterImage}
+                        alt="After transformation"
+                        className="w-full h-48 object-cover rounded-md"
+                      />
+                    </div>
+                  </div>
+                )}
+              </div>
+            </div>
             
-            {testimonials.map((_, index) => (
-              <button 
-                key={index} 
-                onClick={() => setActiveIndex(index)}
-                className={`w-3 h-3 rounded-full mx-1 ${
-                  index === activeIndex ? 'bg-burgundy-500' : 'bg-burgundy-200'
-                }`}
-                aria-label={`Go to testimonial ${index + 1}`}
-              />
-            ))}
-            
-            <button 
-              onClick={nextTestimonial} 
-              className="w-10 h-10 rounded-full flex items-center justify-center border border-burgundy-300 text-burgundy-500 hover:bg-burgundy-500 hover:text-white transition-colors"
-              aria-label="Next testimonial"
-            >
-              <ChevronRight size={20} />
-            </button>
+            <div className="flex justify-center mt-8 space-x-4">
+              <Button 
+                variant="outline" 
+                size="icon" 
+                className="rounded-full border-gray-600 text-gray-400 hover:text-white"
+                onClick={handlePrev}
+              >
+                <ChevronLeft className="h-5 w-5" />
+              </Button>
+              <Button 
+                variant="outline" 
+                size="icon" 
+                className="rounded-full border-gray-600 text-gray-400 hover:text-white"
+                onClick={handleNext}
+              >
+                <ChevronRight className="h-5 w-5" />
+              </Button>
+            </div>
           </motion.div>
         </div>
       </div>

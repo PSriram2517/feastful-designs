@@ -7,10 +7,10 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import AboutPage from "./pages/About";
 import NotFound from "./pages/NotFound";
-import MenuPage from "./pages/Menu";
+import MembershipPage from "./pages/Membership";
 import GalleryPage from "./pages/Gallery";
-import ReservationsPage from "./pages/Reservations";
-import OrderPage from "./pages/Order";
+import EquipmentPage from "./pages/Equipment";
+import ClassesPage from "./pages/Classes";
 import ContactPage from "./pages/Contact";
 
 const queryClient = new QueryClient();
@@ -24,10 +24,10 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/about" element={<AboutPage />} />
-          <Route path="/menu" element={<MenuPage />} />
+          <Route path="/membership" element={<MembershipPage />} />
           <Route path="/gallery" element={<GalleryPage />} />
-          <Route path="/reservations" element={<ReservationsPage />} />
-          <Route path="/order" element={<OrderPage />} />
+          <Route path="/equipment" element={<EquipmentPage />} />
+          <Route path="/classes" element={<ClassesPage />} />
           <Route path="/contact" element={<ContactPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
