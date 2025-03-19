@@ -7,6 +7,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Index from "./pages/Index";
 import AboutPage from "./pages/About";
 import NotFound from "./pages/NotFound";
+import MenuPage from "./pages/Menu";
 
 const queryClient = new QueryClient();
 
@@ -19,8 +20,8 @@ const App = () => (
         <Routes>
           <Route path="/" element={<Index />} />
           <Route path="/about" element={<AboutPage />} />
+          <Route path="/menu" element={<MenuPage />} />
           {/* These routes will be implemented in future updates */}
-          <Route path="/menu" element={<NotFound />} />
           <Route path="/gallery" element={<NotFound />} />
           <Route path="/reservations" element={<NotFound />} />
           <Route path="/order" element={<NotFound />} />
