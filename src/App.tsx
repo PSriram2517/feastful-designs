@@ -8,6 +8,10 @@ import Index from "./pages/Index";
 import AboutPage from "./pages/About";
 import NotFound from "./pages/NotFound";
 import MenuPage from "./pages/Menu";
+import GalleryPage from "./pages/Gallery";
+import ReservationsPage from "./pages/Reservations";
+import OrderPage from "./pages/Order";
+import ContactPage from "./pages/Contact";
 
 const queryClient = new QueryClient();
 
@@ -21,11 +25,10 @@ const App = () => (
           <Route path="/" element={<Index />} />
           <Route path="/about" element={<AboutPage />} />
           <Route path="/menu" element={<MenuPage />} />
-          {/* These routes will be implemented in future updates */}
-          <Route path="/gallery" element={<NotFound />} />
-          <Route path="/reservations" element={<NotFound />} />
-          <Route path="/order" element={<NotFound />} />
-          <Route path="/contact" element={<NotFound />} />
+          <Route path="/gallery" element={<GalleryPage />} />
+          <Route path="/reservations" element={<ReservationsPage />} />
+          <Route path="/order" element={<OrderPage />} />
+          <Route path="/contact" element={<ContactPage />} />
           <Route path="*" element={<NotFound />} />
         </Routes>
       </BrowserRouter>
