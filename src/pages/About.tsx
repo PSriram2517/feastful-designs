@@ -28,7 +28,7 @@ const AboutPage = () => {
       name: 'David Chen',
       position: 'Head Sommelier',
       image: 'https://images.unsplash.com/photo-1506863530036-1efeddceb993?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80',
-      bio: 'David's expertise in wine pairing elevates the dining experience at Food Feast, with carefully selected wines that perfectly complement our meat-focused menu.'
+      bio: "David's expertise in wine pairing elevates the dining experience at Food Feast, with carefully selected wines that perfectly complement our meat-focused menu."
     },
     {
       name: 'Sophia Patel',
